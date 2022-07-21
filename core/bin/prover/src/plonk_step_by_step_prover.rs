@@ -57,7 +57,7 @@ impl PlonkStepByStepProver {
         witness: zksync_circuit::circuit::ZkSyncCircuit<'_, Engine>,
         block_size: usize,
     ) -> anyhow::Result<SingleProof> {
-        println!(SystemTime::now());
+        println!("{:?}",SystemTime::now());
 
         let valid_cached_precomp = {
             self.prepared_computations
@@ -84,7 +84,7 @@ impl PlonkStepByStepProver {
 
         *self.prepared_computations.lock().unwrap() = Some(precomp);
 
-        println!(SystemTime::now());
+        println!("{:?}",SystemTime::now());
 
         Ok(verified_proof)
     }
