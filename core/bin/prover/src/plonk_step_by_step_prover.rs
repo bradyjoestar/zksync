@@ -58,7 +58,7 @@ impl PlonkStepByStepProver {
         block_size: usize,
     ) -> anyhow::Result<SingleProof> {
         println!(SystemTime::now());
-        
+
         let valid_cached_precomp = {
             self.prepared_computations
                 .lock()

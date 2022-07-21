@@ -300,8 +300,8 @@ async fn run_server(components: &ComponentsToRun) {
     if components.0.contains(&Component::Prometheus) {
         // Run prometheus data exporter.
         let config = PrometheusConfig::from_env();
-        let prometheus_task_handle = run_prometheus_exporter(config.port);
-        tasks.push(prometheus_task_handle);
+        // let prometheus_task_handle = run_prometheus_exporter(config.port);
+        // tasks.push(prometheus_task_handle);
         // We can run them only with active prometheus
         if components.0.contains(&Component::PrometheusPeriodicMetrics) {
             let counter_task_handle = run_operation_counter(read_only_connection_pool.clone());
