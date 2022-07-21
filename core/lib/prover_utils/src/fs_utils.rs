@@ -72,6 +72,9 @@ pub fn get_universal_setup_monomial_form(
     power_of_two: u32,
 ) -> Result<Crs<Engine, CrsForMonomialForm>, anyhow::Error> {
     let setup_file_name = get_universal_setup_monomial_file_name(power_of_two)?;
+    println!("setup_file_name get_universal_setup_monomial_form begin---------------");
+    println!(setup_file_name);
+    println!("setup_file_name get_universal_setup_monomial_form end---------------");
     let mut buf_reader = get_universal_setup_file_buff_reader(&setup_file_name)?;
     Crs::<Engine, CrsForMonomialForm>::read(&mut buf_reader)
         .map_err(|e| format_err!("Failed to read Crs from setup file: {}", e))
@@ -86,6 +89,9 @@ pub fn get_universal_setup_lagrange_form(
         "setup power of two is not in the correct range"
     );
     let setup_file_name = format!("setup_2^{}_lagrange.key", power_of_two);
+    println!("setup_file_name begin get_universal_setup_lagrange_form-------------");
+    println!(setup_file_name);
+    println!("setup_file_name end   get_universal_setup_lagrange_form-------------");
     let mut buf_reader = get_universal_setup_file_buff_reader(&setup_file_name)?;
     Crs::<Engine, CrsForLagrangeForm>::read(&mut buf_reader)
         .map_err(|e| format_err!("Failed to read Crs from setup file: {}", e))

@@ -1,5 +1,6 @@
 // Built-in deps
 use std::sync::Mutex;
+use std::time::SystemTime;
 // Workspace deps
 use zksync_config::ChainConfig;
 use zksync_crypto::proof::{AggregatedProof, PrecomputedSampleProofs, SingleProof};
@@ -56,6 +57,8 @@ impl PlonkStepByStepProver {
         witness: zksync_circuit::circuit::ZkSyncCircuit<'_, Engine>,
         block_size: usize,
     ) -> anyhow::Result<SingleProof> {
+        println!(SystemTime::now());
+        
         let valid_cached_precomp = {
             self.prepared_computations
                 .lock()
@@ -80,6 +83,8 @@ impl PlonkStepByStepProver {
             .gen_step_by_step_proof_using_prepared_setup(witness, &vk)?;
 
         *self.prepared_computations.lock().unwrap() = Some(precomp);
+
+        println!(SystemTime::now());
 
         Ok(verified_proof)
     }
